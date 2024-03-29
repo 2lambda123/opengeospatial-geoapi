@@ -17,6 +17,7 @@
  */
 package org.opengis.tools.version;
 
+import io.github.pixee.security.ZipSecurity;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -113,7 +114,7 @@ final class JavaElementCollector {
          * 'elements' set with all public and protected API that we can find.
          */
         final Map<String,JavaElement> packages = new HashMap<>();
-        try (ZipInputStream file = new ZipInputStream(new FileInputStream(jarFiles.get(0)))) {
+        try (ZipInputStream file = ZipSecurity.createHardenedInputStream(new FileInputStream(jarFiles.get(0)))) {
             ZipEntry entry;
             while ((entry = file.getNextEntry()) != null) {
                 String classname = entry.getName();

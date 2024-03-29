@@ -104,7 +104,8 @@
     <website.encoding>UTF-8</website.encoding>
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
     <maven.compiler.release>11</maven.compiler.release>
-  </properties>
+  <versions.java-security-toolkit>1.1.3</versions.java-security-toolkit>
+ </properties>
   <profiles>
     <!--
       Create Python wheel package in target/dist/geoapi-*.tar.gz
@@ -245,7 +246,12 @@
         <artifactId>vecmath</artifactId>
         <version>1.5.2</version>
       </dependency>
-    </dependencies>
+   <dependency>
+    <groupId>io.github.pixee</groupId>
+    <artifactId>java-security-toolkit</artifactId>
+    <version>${versions.java-security-toolkit}</version>
+   </dependency>
+  </dependencies>
   </dependencyManagement>
 
   <!-- All dependencies required by the core of GeoAPI interfaces. -->
