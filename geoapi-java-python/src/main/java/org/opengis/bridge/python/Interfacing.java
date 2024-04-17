@@ -17,6 +17,7 @@
  */
 package org.opengis.bridge.python;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
@@ -315,7 +316,7 @@ public abstract class Interfacing extends CodeList<Interfacing> {
                     GeoAPI.class.getResourceAsStream(SUBCLASSED_LIST), StandardCharsets.UTF_8)))
             {
                 String line;
-                while ((line = in.readLine()) != null) {
+                while ((line = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                     subclassed.add(Class.forName(line, false, loader));
                 }
             } catch (NullPointerException | IOException | ClassNotFoundException e) {
