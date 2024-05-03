@@ -17,6 +17,7 @@
  */
 package org.opengis.tools.doclet;
 
+import java.nio.file.Files;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -186,7 +187,7 @@ public final class Departure extends BlockTaglet implements Flushable {
                 return;
             }
         }
-        try (BufferedWriter out = new BufferedWriter(new FileWriter("departures.html"))) {
+        try (BufferedWriter out = Files.newBufferedWriter("departures.html".toPath())) {
             out.write("<!DOCTYPE html>"); out.newLine();
             out.newLine();
             out.write("<html>"); out.newLine();
