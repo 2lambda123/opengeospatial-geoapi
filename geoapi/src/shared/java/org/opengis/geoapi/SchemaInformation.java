@@ -17,6 +17,8 @@
  */
 package org.opengis.geoapi;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -387,7 +389,7 @@ public class SchemaInformation {
                 info("Downloading " + location);
             }
             final Document doc;
-            try (final InputStream in = new URL(location).openStream()) {
+            try (final InputStream in = Urls.create(location, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openStream()) {
                 doc = factory.newDocumentBuilder().parse(in);
             }
             schemaLocations.addLast(location);
