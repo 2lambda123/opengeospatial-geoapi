@@ -161,7 +161,7 @@ final class JavaElementCollector {
         /*
          * The "geoapi-conformance" module was named "conformance" in older GeoAPI versions.
          */
-        if (version.major < 3 && artefact.equals("geoapi-conformance")) {
+        if (version.major < 3 && "geoapi-conformance".equals(artefact)) {
             artefact = "conformance";
         }
         /*
@@ -176,7 +176,7 @@ final class JavaElementCollector {
          */
         final List<File> files = new ArrayList<>();
         files.add(new File(repository, version.getMavenArtefactPath(artefact)));
-        if (artefact.equals("geoapi")) {
+        if ("geoapi".equals(artefact)) {
             if (!pendingIncludesCore) {
                 files.add(new File(repository, version.getMavenArtefactPath("geoapi-dummy-pending")));
             }

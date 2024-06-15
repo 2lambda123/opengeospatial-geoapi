@@ -99,15 +99,15 @@ final class Singleton implements InvocationHandler {
              */
             switch (args.length) {
                 case 0: {
-                    if (name.equals("toString")) {
+                    if ("toString".equals(name)) {
                         return environment.builtins.call("str", object).getStringValue();
-                    } else if (name.equals("hashCode")) {
+                    } else if ("hashCode".equals(name)) {
                         return object.hashCode();
                     }
                     break;
                 }
                 case 1: {
-                    if (name.equals("equals")) {
+                    if ("equals".equals(name)) {
                         final Object arg = args[0];
                         if (arg != null && arg.getClass() == proxy.getClass()) {
                             return object.equals(((Singleton) Proxy.getInvocationHandler(arg)).object);

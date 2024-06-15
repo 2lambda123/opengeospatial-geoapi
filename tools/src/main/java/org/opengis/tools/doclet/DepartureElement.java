@@ -135,7 +135,7 @@ final class DepartureElement implements Comparable<DepartureElement> {
      */
     final void writeClassName(final Writer out) throws IOException {
         // If we don't know the real type, assume interface.
-        out.write(isMember && !type.equals("Enum") ? "Interface" : type);
+        out.write(isMember && !"Enum".equals(type) ? "Interface" : type);
         out.write(' ');
         out.write("<a href=\"");
         out.write(pathToHTML);

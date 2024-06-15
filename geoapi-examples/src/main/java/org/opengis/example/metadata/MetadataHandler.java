@@ -62,7 +62,7 @@ final class MetadataHandler implements InvocationHandler {
             throws UnsupportedOperationException
     {
         if (args != null) {
-            if (args.length == 1 && method.getName().equals("equals")) {
+            if (args.length == 1 && "equals".equals(method.getName())) {
                 return equals(args[0]);
             }
             throw new UnsupportedOperationException(String.valueOf(method));
@@ -96,8 +96,8 @@ final class MetadataHandler implements InvocationHandler {
             return value;
         }
         final String name = method.getName();
-        if (name.equals("toString")) return toString();
-        if (name.equals("hashCode")) return hashCode();
+        if ("toString".equals(name)) return toString();
+        if ("hashCode".equals(name)) return hashCode();
         throw new UnsupportedOperationException("Unknown method: " + name + "()");
     }
 
