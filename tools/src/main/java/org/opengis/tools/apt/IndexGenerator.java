@@ -209,7 +209,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             final Elements utils = processingEnv.getElementUtils();
             for (final TypeElement element : elements) {
                 if (!utils.isDeprecated(element)) {
-                    if (!utils.getPackageOf(element).getQualifiedName().toString().equals("org.opengis.annotation")) {
+                    if (!"org.opengis.annotation".equals(utils.getPackageOf(element).getQualifiedName().toString())) {
                         writeTypeElement(element);
                     }
                 }
@@ -322,10 +322,10 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
              * the RepresentativeFraction interface, because the Javadoc of that interface
              * encourage implementers to extend java.lang.Number.
              */
-            if (!name.equals("doubleValue") || classname.equals("RepresentativeFraction")) {
+            if (!"doubleValue".equals(name) || "RepresentativeFraction".equals(classname)) {
                 out.write("Java");
             }
-        } else if (vecmathMethods.contains(name) && classname.equals("Matrix")) {
+        } else if (vecmathMethods.contains(name) && "Matrix".equals(classname)) {
             out.write("Vecmath");
         }
         out.write("</td>");
